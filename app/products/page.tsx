@@ -9,6 +9,10 @@ export const metadata: Metadata = {
 
 export default async function ProductsPage() {
   const products = await getProducts();
+  // «Новинки» — первыми
+  const ordered = [...products].sort(
+    (a, b) => Number(b.badge === "новинка") - Number(a.badge === "новинка"),
+  );
 
   return (
     <section className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-20">
@@ -27,7 +31,7 @@ export default async function ProductsPage() {
       </header>
 
       <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4">
-        {products.map((p) => (
+        {ordered.map((p) => (
           <ProductCard key={p.id} product={p} />
         ))}
       </div>

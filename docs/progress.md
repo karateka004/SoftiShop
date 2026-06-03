@@ -1,29 +1,24 @@
 # progress.md — живой лог
 
-## Сейчас: Фаза 1 завершена ✅ · начинаем Фазу 2
+## Сейчас: Фаза 2 завершена ✅ · дальше Фаза 3
 
-### Важный фикс (между фазами)
-- ⚠️→✅ **Кириллический путь ломал Tailwind v4** (`@tailwindcss/node` → `Error: EINVAL at new Worker`),
-  из-за чего падали `next dev` и `next build`. **Решение: проект перенесён в `C:\Users\User\Desktop\softi`**
-  (ASCII, без пробелов; git переехал вместе). После этого `next build` проходит ПОЛНОСТЬЮ, dev отдаёт `200`.
-  Подтверждено визуально через Preview (главная рендерится корректно). См. ADR-005.
+### Сделано в Фазе 2
+- Главная `app/page.tsx` = Hero + ValueProps + Manifesto + OrderCta (компоненты в `components/home/`).
+- Hero: вотермарк-лого, заголовок «Oversize washed black» (акцент pink), 2 CTA (Direct + Переглянути товари).
+- ValueProps: 3 колонки (1 of 1 / Oversize fit / Доставка 1–2 дні) с hairline-разделителями.
+- Manifesto: редакторское заявление + ссылка «Дізнатися більше» (→ /about, Фаза 6).
+- OrderCta: тёмный бэнд «Direct» (Pirata One) + CTA «Написати в Direct».
+- Переиспользуемый `components/site/cta.tsx` (variants: primary / outline / light).
+- Проверка: `tsc` → 0, `next build` → success (4 стр. static), главная отдаёт 200 со всеми секциями.
 
-### Сделано в Фазе 1
-- Дизайн-токены `app/globals.css` (`@theme`): палитра bone+pink, радиус 0, семантика shadcn → бренд.
-  Починен circular-font баг.
-- Шрифты через `next/font`: **Pirata One** (дисплей/лого), **Oswald** (заголовки/нав), **Golos Text** (текст).
-- Layout (`app/layout.tsx`, `lang="uk"`, метаданные + OG): анонс-бар + header + main + footer.
-- `components/site/`: `announcement-bar`, `site-header` (центр-лого, нав, иконки), `mobile-nav` (Sheet),
-  `site-footer`, `icons` (inline Instagram). `lib/site.ts` (бренд/нав/анонсы).
-- Проверка: `tsc` → 0, `next build` → success (4 страницы), главная подтверждена скриншотом.
-
-### Дальше (Фаза 2)
-- Главная: hero + промо-секции (брендовые, фото-лайт). Компоненты в `components/home/`.
-  Продуктовая сетка + карточки + копирование фото — Фаза 3.
+### Дальше (Фаза 3)
+- Страница коллекции `/products` (сетка) + переиспользуемая карточка товара (ProductCard).
+- Скопировать фото `…\сайт соня\Вещи для магазина\1..5` → `public/products/<handle>/`
+  (папки: 1→washed-black-tee, 2→art-print-tee, 3→butterfly-tee, 4→oversize-washed-black, 5→softi-05).
 
 ### Известные вопросы / TODO
-- ⚙️ Node v20.18.1 < 20.19 (warning EBADENGINE). Обновить до Фазы 7.
-- 🔎 Search/корзина в header — заглушки (Фазы 3/5). Роуты /products, /faq — 404 до Фаз 3/6.
+- ⚙️ Node v20.18.1 < 20.19 (warning). Обновить до Фазы 7.
+- 🔎 Search/корзина в header — заглушки (Фазы 3/5). /products, /faq, /about — 404 до Фаз 3/6.
 - ⛳ Цены/валюта (UAH), точные названия, описание товара №5 — плейсхолдеры, подтвердить.
-- ⛳ Фото товаров: источник `…\сайт соня\Вещи для магазина` → копировать в `public/products/` (Фаза 3).
 - ⛳ Логотип Softi (вектор/PNG) — получить или оставить текстовый (Pirata One).
+- 🛠 Tech-debt: footer/mobile-nav имеют inline-CTA — можно перевести на `<Cta>` (необязательно).

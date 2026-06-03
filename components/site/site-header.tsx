@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Search, ShoppingBag } from "lucide-react";
+import { Search } from "lucide-react";
 import { NAV } from "@/lib/site";
 import { MobileNav } from "@/components/site/mobile-nav";
+import { CartButton } from "@/components/cart/cart-button";
 
 export function SiteHeader() {
   return (
@@ -48,13 +49,7 @@ export function SiteHeader() {
           >
             <Search className="size-5" strokeWidth={1.5} />
           </button>
-          <button
-            type="button"
-            aria-label="Кошик"
-            className="grid size-10 place-items-center text-ink transition-colors hover:text-pink"
-          >
-            <ShoppingBag className="size-5" strokeWidth={1.5} />
-          </button>
+          <CartButton />
         </div>
       </div>
     </header>

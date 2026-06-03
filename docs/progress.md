@@ -1,24 +1,26 @@
 # progress.md — живой лог
 
-## Сейчас: Фаза 2 завершена ✅ · дальше Фаза 3
+## Сейчас: Фаза 3 завершена ✅ · дальше Фаза 4
 
-### Сделано в Фазе 2
-- Главная `app/page.tsx` = Hero + ValueProps + Manifesto + OrderCta (компоненты в `components/home/`).
-- Hero: вотермарк-лого, заголовок «Oversize washed black» (акцент pink), 2 CTA (Direct + Переглянути товари).
-- ValueProps: 3 колонки (1 of 1 / Oversize fit / Доставка 1–2 дні) с hairline-разделителями.
-- Manifesto: редакторское заявление + ссылка «Дізнатися більше» (→ /about, Фаза 6).
-- OrderCta: тёмный бэнд «Direct» (Pirata One) + CTA «Написати в Direct».
-- Переиспользуемый `components/site/cta.tsx` (variants: primary / outline / light).
-- Проверка: `tsc` → 0, `next build` → success (4 стр. static), главная отдаёт 200 со всеми секциями.
+### Сделано в Фазе 3
+- Реальные фото → `public/products/<handle>/` (washed-black-tee 3, art-print 2, butterfly 2,
+  oversize-washed 3, softi-05 2).
+- `components/product/product-card.tsx` — карточка: next/image (object-cover, hover-zoom),
+  pill-бейдж (новинка / 1 of 1 / Продано), назва (hover→pink), ціна.
+- `app/products/page.tsx` — коллекция `/products` (async Server Component, `getProducts()`),
+  редакторская сетка 2/3/4 кол., заголовок «Колекція / Товари / N моделей».
+- `lib/format.ts` — `formatPrice` (uk-UA → «950 ₴»).
+- (Доп.) Hero: заголовок заменён на **крутящуюся печать-логотип**; фирменный `::selection`.
+- Проверка: `tsc` 0; `next build` success (5 стр. static: /, /products, /_not-found);
+  /products отдаёт 200 со всеми товарами и фото.
 
-### Дальше (Фаза 3)
-- Страница коллекции `/products` (сетка) + переиспользуемая карточка товара (ProductCard).
-- Скопировать фото `…\сайт соня\Вещи для магазина\1..5` → `public/products/<handle>/`
-  (папки: 1→washed-black-tee, 2→art-print-tee, 3→butterfly-tee, 4→oversize-washed-black, 5→softi-05).
+### Дальше (Фаза 4)
+- Страница товара `/products/[handle]`: галерея фото, «легенда», выбор размера (визуально),
+  кнопка «в кошик» (состояние — Фаза 5). `generateStaticParams` из `getAllProductHandles()`.
 
 ### Известные вопросы / TODO
-- ⚙️ Node v20.18.1 < 20.19 (warning). Обновить до Фазы 7.
-- 🔎 Search/корзина в header — заглушки (Фазы 3/5). /products, /faq, /about — 404 до Фаз 3/6.
+- Карточки ведут на `/products/[handle]` → 404 до Фазы 4. /faq, /about → 404 до Фазы 6.
+- Дефолтная 404 (англ.) — сделать брендовую укр. (Фаза 7 или быстрый таск).
 - ⛳ Цены/валюта (UAH), точные названия, описание товара №5 — плейсхолдеры, подтвердить.
-- ⛳ Логотип Softi (вектор/PNG) — получить или оставить текстовый (Pirata One).
-- 🛠 Tech-debt: footer/mobile-nav имеют inline-CTA — можно перевести на `<Cta>` (необязательно).
+- ⛳ Логотип Softi (вектор) — пока текстовый. Node 20.18.1 < 20.19 — обновить до Фазы 7.
+- 🛠 Tech-debt: footer/mobile-nav inline-CTA → можно на `<Cta>`; лишние next.svg в `public/`.

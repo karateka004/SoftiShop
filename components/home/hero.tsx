@@ -1,27 +1,57 @@
 import { Cta } from "@/components/site/cta";
 import { SITE } from "@/lib/site";
 
+// Вращающаяся печать-логотип: круговая надпись бренда крутится 360°
+// вокруг статичного готического «Softi». Уважает prefers-reduced-motion.
+function SpinningSeal() {
+  const ring = "КОЖНА РІЧ УНІКАЛЬНА • 1 OF 1 • STREETWEAR • ";
+  return (
+    <div className="relative grid size-60 place-items-center md:size-72">
+      <svg
+        viewBox="0 0 200 200"
+        className="seal-spin absolute inset-0 size-full"
+        aria-hidden
+      >
+        <defs>
+          <path
+            id="softi-seal"
+            d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"
+            fill="none"
+          />
+        </defs>
+        <text
+          className="fill-ink font-head"
+          fontSize="12.5"
+          textLength="488"
+          lengthAdjust="spacing"
+        >
+          <textPath href="#softi-seal" startOffset="0">
+            {ring}
+          </textPath>
+        </text>
+      </svg>
+      <span className="font-display text-5xl leading-none text-ink md:text-6xl">
+        Softi
+      </span>
+    </div>
+  );
+}
+
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-line bg-bone">
-      {/* Огромный полупрозрачный вотермарк-логотип для глубины */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -bottom-[6%] select-none text-center font-display text-[30vw] leading-none text-ink/[0.045]"
-      >
-        Softi
-      </span>
-
-      <div className="relative mx-auto max-w-[1400px] px-4 py-24 text-center md:px-6 md:py-36">
+      <div className="relative mx-auto flex max-w-[1400px] flex-col items-center px-4 py-20 text-center md:px-6 md:py-28">
         <p className="font-head text-xs uppercase tracking-[0.3em] text-ink-soft">
           UA · Streetwear · 1 of 1
         </p>
-        <h1 className="mx-auto mt-6 max-w-4xl font-head text-5xl font-semibold uppercase leading-[0.95] tracking-tight text-ink md:text-8xl">
-          Oversize
-          <br />
-          washed <span className="text-pink">black</span>
-        </h1>
-        <p className="mx-auto mt-7 max-w-xl font-sans text-base text-ink-soft md:text-lg">
+        {/* h1 для SEO/скрин-ридеров (визуальный акцент — печать) */}
+        <h1 className="sr-only">Softi — кастомні oversize-футболки</h1>
+
+        <div className="my-10 md:my-12">
+          <SpinningSeal />
+        </div>
+
+        <p className="mx-auto max-w-xl font-sans text-base text-ink-soft md:text-lg">
           {SITE.tagline}. Кастомні футболки ручної роботи — vintage-ефект,
           акцентні принти й характер у кожній деталі.
         </p>

@@ -109,3 +109,25 @@
     @apply font-head;
   }
 }
+
+/* Фирменное выделение текста (вместо браузерного синего) */
+::selection {
+  background-color: var(--pink);
+  color: var(--on-pink);
+}
+
+/* Вращающаяся печать-логотип (hero) */
+@keyframes softi-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.seal-spin {
+  animation: softi-spin 22s linear infinite;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .seal-spin {
+    animation: none;
+  }
+}

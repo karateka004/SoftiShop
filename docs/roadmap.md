@@ -3,11 +3,10 @@
 Правило: **одна фаза за раз**, в конце — СТОП и ожидание «ОК». В конце фазы — обновить
 `progress.md` и этот файл, сделать git-commit.
 
-- [~] **Фаза 0** — каркас Next.js + Tailwind v4 + shadcn/ui + git, папки, `CLAUDE.md` и `/docs`,
-  форма mock-данных, абстракция `lib/commerce.ts`, подготовка к Vercel.
-  *Сделано; ждём одобрения предложенных токенов.*
-- [ ] **Фаза 1** — дизайн-токены (`@theme`) + базовый layout: header, footer, навигация.
-  Чиним circular-font, подключаем Metal Mania / Oswald / Inter.
+- [x] **Фаза 0** — каркас Next.js + Tailwind v4 + shadcn/ui + git, папки, `CLAUDE.md` и `/docs`,
+  форма mock-данных, абстракция `lib/commerce.ts`, подготовка к Vercel. *Токены одобрены.*
+- [~] **Фаза 1** — дизайн-токены (`@theme`) + базовый layout: header, footer, навигация.
+  Построено; circular-font исправлен; шрифты **Pirata One / Oswald / Golos Text**. *На визуальном ревью.*
 - [ ] **Фаза 2** — главная: hero + промо-секции (featured-товары).
 - [ ] **Фаза 3** — страница коллекции `/products` (сетка) + компонент карточки товара
   (+ копирование фото в `public/products/`).

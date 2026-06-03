@@ -76,7 +76,7 @@ export const PRODUCTS: Product[] = [
     price: { amount: 1200, currency: UAH },
     sizes: ["M"], // M (oversized)
     images: [
-      { src: "/products/butterfly-tee/front.jpg", alt: "Vintage black oversize футболка з принтом butterfly — вид спереду" },
+      { src: "/products/butterfly-tee/front.png", alt: "Vintage black oversize футболка з принтом butterfly — вид спереду" },
       { src: "/products/butterfly-tee/g1.jpg", alt: "Футболка butterfly — принт ззаду" },
       { src: "/products/butterfly-tee/g2.jpg", alt: "Футболка butterfly — образ на вулиці" },
     ],

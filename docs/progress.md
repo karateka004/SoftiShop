@@ -1,29 +1,29 @@
 # progress.md — живой лог
 
-## Сейчас: Фаза 1 (на визуальном ревью)
+## Сейчас: Фаза 1 завершена ✅ · начинаем Фазу 2
+
+### Важный фикс (между фазами)
+- ⚠️→✅ **Кириллический путь ломал Tailwind v4** (`@tailwindcss/node` → `Error: EINVAL at new Worker`),
+  из-за чего падали `next dev` и `next build`. **Решение: проект перенесён в `C:\Users\User\Desktop\softi`**
+  (ASCII, без пробелов; git переехал вместе). После этого `next build` проходит ПОЛНОСТЬЮ, dev отдаёт `200`.
+  Подтверждено визуально через Preview (главная рендерится корректно). См. ADR-005.
 
 ### Сделано в Фазе 1
-- Дизайн-токены в `app/globals.css` (`@theme`): палитра bone+pink, радиус 0, семантика shadcn → бренд.
-- Шрифты через `next/font`: **Pirata One** (дисплей/лого), **Oswald** (заголовки/нав),
-  **Golos Text** (текст; заменил Inter — нативная кириллица, менее «генерик»).
-- Починен circular-font баг (`--font-sans: var(--font-sans)` → `--ff-*` из next/font).
-- Базовый layout (`app/layout.tsx`, `lang="uk"`, метаданные UA + OG): анонс-бар + header + main + footer.
-- Компоненты `components/site/`: `announcement-bar`, `site-header` (центр-лого, нав, иконки),
-  `mobile-nav` (shadcn Sheet, Base UI), `site-footer` (тёмный, IG-CTA), `icons` (inline Instagram).
-- `lib/site.ts` — константы (бренд, NAV, анонсы). Заглушка главной `app/page.tsx` (hero — Фаза 2).
-- `next.config.ts`: `turbopack.root` = softi (был лишний lockfile в домашней папке → неверный корень).
+- Дизайн-токены `app/globals.css` (`@theme`): палитра bone+pink, радиус 0, семантика shadcn → бренд.
+  Починен circular-font баг.
+- Шрифты через `next/font`: **Pirata One** (дисплей/лого), **Oswald** (заголовки/нав), **Golos Text** (текст).
+- Layout (`app/layout.tsx`, `lang="uk"`, метаданные + OG): анонс-бар + header + main + footer.
+- `components/site/`: `announcement-bar`, `site-header` (центр-лого, нав, иконки), `mobile-nav` (Sheet),
+  `site-footer`, `icons` (inline Instagram). `lib/site.ts` (бренд/нав/анонсы).
+- Проверка: `tsc` → 0, `next build` → success (4 страницы), главная подтверждена скриншотом.
 
-### Проверка
-- `tsc --noEmit` → 0 ошибок. `next build` → **Compiled successfully** (TS-worker падает — см. ниже).
-- Live preview/скриншот в текущей песочнице недоступен: Next dev/build падает на спавне воркеров
-  (ОС `error 1450` / `0xC0000409`, ресурсный лимит окружения). Код валиден; смотреть локально `npm run dev`.
-
-### Дальше (Фаза 2, после «ОК»)
-- Главная: hero + промо-секции (featured из `lib/commerce.ts`).
+### Дальше (Фаза 2)
+- Главная: hero + промо-секции (брендовые, фото-лайт). Компоненты в `components/home/`.
+  Продуктовая сетка + карточки + копирование фото — Фаза 3.
 
 ### Известные вопросы / TODO
-- ⚙️ Окружение: `next build`/`next dev` нестабильны тут (ресурсы). На машине владельца / Vercel — ок.
-- ⚙️ Node v20.18.1 < 20.19 (warning). Обновить до Фазы 7.
-- 🔎 Search/корзина в header — пока заглушки (Фазы 3/5). Роуты /products, /faq — 404 до Фаз 3/6.
+- ⚙️ Node v20.18.1 < 20.19 (warning EBADENGINE). Обновить до Фазы 7.
+- 🔎 Search/корзина в header — заглушки (Фазы 3/5). Роуты /products, /faq — 404 до Фаз 3/6.
 - ⛳ Цены/валюта (UAH), точные названия, описание товара №5 — плейсхолдеры, подтвердить.
-- ⛳ Фото товаров не скопированы в `public/products/` (Фаза 3). Логотип Softi (вектор) — TODO.
+- ⛳ Фото товаров: источник `…\сайт соня\Вещи для магазина` → копировать в `public/products/` (Фаза 3).
+- ⛳ Логотип Softi (вектор/PNG) — получить или оставить текстовый (Pirata One).

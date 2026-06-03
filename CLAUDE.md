@@ -17,7 +17,9 @@ streetwear, тексты на сайте **на украинском**. Сейч
 - Данные товаров — типизированный **mock** `lib/products.ts` через абстракцию `lib/commerce.ts`
 - Деплой — **Vercel** (публичный URL = Фаза 7)
 
-## Команды (выполнять в папке `softi/`)
+## Путь проекта и команды
+**Путь:** `C:\Users\User\Desktop\softi` (перенесён из `…\сайт соня\softi` — кириллица/пробел
+в пути ломают Tailwind v4 worker: `EINVAL at new Worker`). Команды выполнять отсюда:
 - `npm run dev` — дев-сервер
 - `npm run build` — прод-сборка
 - `npm run lint` — ESLint

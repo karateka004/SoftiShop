@@ -1,22 +1,21 @@
 // lib/products.ts
 //
 // ТИПИЗИРОВАННЫЕ MOCK-ДАННЫЕ ТОВАРОВ (демо-витрина Softi).
-// Источник описаний — txt-файлы из «Вещи для магазина» (украинский «легенда»-копирайтинг).
+// Источник — txt-файлы и фото из «Вещи для магазина» (украинский копирайтинг).
+// Цены и размеры взяты из обновлённых txt (грн). Доступен один размер на товар (1-of-1 вайб).
 //
-// ВАЖНО (плейсхолдеры — подтвердить у владельца бренда):
-//   • price.amount, sizes и часть title — ПЛЕЙСХОЛДЕРЫ.
-//   • Реальные фото копируются в public/products/<handle>/ в Фазе 3.
-//   • Доступ к данным идёт ТОЛЬКО через lib/commerce.ts (не импортируй этот файл в UI напрямую).
+// TODO у владельца: товар №2 (art-print) — в txt не было размера/цены → ПЛЕЙСХОЛДЕР.
+// Доступ к данным идёт ТОЛЬКО через lib/commerce.ts (не импортируй этот файл в UI напрямую).
 
 export type CurrencyCode = "UAH" | "EUR" | "USD";
 
 export interface Money {
-  amount: number; // в основных единицах валюты (напр. 950 = 950 ₴)
+  amount: number; // в основных единицах валюты (напр. 1200 = 1200 ₴)
   currency: CurrencyCode;
 }
 
 export interface ProductImage {
-  src: string; // путь в /public, напр. "/products/washed-black-tee/01.jpg"
+  src: string; // путь в /public, напр. "/products/washed-black-tee/01.jpg" (01 = витринное front-фото)
   alt: string; // осмысленный alt для a11y (украинский)
 }
 
@@ -25,42 +24,44 @@ export interface Product {
   handle: string; // slug для URL: /products/[handle]
   title: string;
   price: Money;
-  sizes: string[]; // только визуальный выбор (без логики склада в демо)
-  images: ProductImage[]; // [0] — обложка
+  sizes: string[]; // доступные размеры (визуальный выбор, без логики склада)
+  images: ProductImage[]; // [0] — витрина (front)
   legend: string; // описание-«легенда»
   available: boolean; // false → бейдж "продано"
   badge?: string; // напр. "новинка", "1 of 1"
   featured?: boolean; // показывать на главной
 }
 
-const CURRENCY: CurrencyCode = "UAH"; // TODO: подтвердить валюту (бренд украинский)
+const UAH: CurrencyCode = "UAH";
 
 export const PRODUCTS: Product[] = [
   {
     id: "1",
     handle: "washed-black-tee",
     title: "Футболка «Washed Black»",
-    price: { amount: 950, currency: CURRENCY }, // TODO: ціна
-    sizes: ["S", "M", "L", "XL"], // TODO: реальні розміри
+    price: { amount: 1200, currency: UAH },
+    sizes: ["M"], // M (oversized)
     images: [
       { src: "/products/washed-black-tee/01.jpg", alt: "Oversize футболка washed black — вид спереду" },
       { src: "/products/washed-black-tee/02.jpg", alt: "Oversize футболка washed black — деталь тканини" },
+      { src: "/products/washed-black-tee/03.jpg", alt: "Oversize футболка washed black — образ" },
+      { src: "/products/washed-black-tee/04.jpg", alt: "Oversize футболка washed black — вид ззаду" },
     ],
     legend:
       "Футболка, яка виглядає так, ніби ти носиш її вже роками — і саме в цьому її вайб. Вільний oversize крій, ефект washed black і той самий effortless street style на кожен день.",
     available: true,
-    badge: "новинка",
     featured: true,
   },
   {
     id: "2",
     handle: "art-print-tee",
     title: "Футболка «Art Print»",
-    price: { amount: 990, currency: CURRENCY }, // TODO: ціна
-    sizes: ["S", "M", "L", "XL"],
+    price: { amount: 1200, currency: UAH }, // TODO: ціна (txt №2 без даних) — плейсхолдер
+    sizes: ["M"], // TODO: розмір (txt №2 без даних) — плейсхолдер
     images: [
-      { src: "/products/art-print-tee/01.jpg", alt: "Чорна oversize футболка з контрастним арт-принтом — вид ззаду" },
-      { src: "/products/art-print-tee/02.jpg", alt: "Чорна oversize футболка з арт-принтом — образ" },
+      { src: "/products/art-print-tee/01.jpg", alt: "Чорна oversize футболка з контрастним арт-принтом — вид спереду" },
+      { src: "/products/art-print-tee/02.jpg", alt: "Чорна oversize футболка з арт-принтом — деталь" },
+      { src: "/products/art-print-tee/03.jpg", alt: "Чорна oversize футболка з арт-принтом — образ" },
     ],
     legend:
       "Футболка для тих, хто говорить стилем без слів. Контрастний арт-принт, oversize fit і clean black aesthetic — той самий streetwear, який притягує погляди.",
@@ -71,11 +72,12 @@ export const PRODUCTS: Product[] = [
     id: "3",
     handle: "butterfly-tee",
     title: "Футболка «Butterfly»",
-    price: { amount: 990, currency: CURRENCY }, // TODO: ціна
-    sizes: ["S", "M", "L", "XL"],
+    price: { amount: 1200, currency: UAH },
+    sizes: ["M"], // M (oversized)
     images: [
-      { src: "/products/butterfly-tee/01.jpg", alt: "Vintage black oversize футболка з принтом butterfly — вид ззаду" },
-      { src: "/products/butterfly-tee/02.jpg", alt: "Vintage black футболка butterfly — образ на вулиці" },
+      { src: "/products/butterfly-tee/01.jpg", alt: "Vintage black oversize футболка з принтом butterfly — вид спереду" },
+      { src: "/products/butterfly-tee/02.jpg", alt: "Футболка butterfly — принт ззаду" },
+      { src: "/products/butterfly-tee/03.jpg", alt: "Футболка butterfly — образ на вулиці" },
     ],
     legend:
       "Футболка, що ловить вайб свободи з першого погляду. Vintage black, oversize fit і акцентний принт butterfly — для образів, які запам'ятовуються без зайвих слів.",
@@ -87,11 +89,13 @@ export const PRODUCTS: Product[] = [
     id: "4",
     handle: "oversize-washed-black",
     title: "Футболка Oversize Washed Black",
-    price: { amount: 950, currency: CURRENCY }, // TODO: ціна
-    sizes: ["S", "M", "L", "XL"],
+    price: { amount: 1100, currency: UAH },
+    sizes: ["L"],
     images: [
       { src: "/products/oversize-washed-black/01.jpg", alt: "Графітова oversize футболка washed black — вид спереду" },
       { src: "/products/oversize-washed-black/02.jpg", alt: "Графітова oversize футболка — деталь" },
+      { src: "/products/oversize-washed-black/03.jpg", alt: "Графітова oversize футболка — образ" },
+      { src: "/products/oversize-washed-black/04.jpg", alt: "Графітова oversize футболка — вид ззаду" },
     ],
     legend:
       "Мінімалізм, що говорить голосніше за тренди. Графітовий washed-ефект, вільний oversize крій та м'яка фактура створюють той самий effortless look, який завжди виглядає дорого. Для образів, що не потребують зайвих слів.",
@@ -100,13 +104,18 @@ export const PRODUCTS: Product[] = [
   {
     id: "5",
     handle: "softi-05",
-    title: "Футболка №5", // TODO: назва
-    price: { amount: 950, currency: CURRENCY }, // TODO: ціна
-    sizes: ["S", "M", "L", "XL"],
+    title: "Футболка «Pink Graffiti»",
+    price: { amount: 1170, currency: UAH },
+    sizes: ["OS"], // oversized, один розмір
     images: [
-      { src: "/products/softi-05/01.jpg", alt: "Кастомна oversize футболка Softi" },
+      { src: "/products/softi-05/01.jpg", alt: "Біла oversize футболка з рожевим графіті-принтом — вид спереду" },
+      { src: "/products/softi-05/02.jpg", alt: "Біла футболка з рожевим графіті-принтом — деталь" },
+      { src: "/products/softi-05/03.jpg", alt: "Біла футболка з рожевим графіті-принтом — образ" },
     ],
-    legend: "", // TODO: опис відсутній у вихідному txt — додати
+    legend:
+      "Не просто базова футболка — це акцент, який задає настрій образу. Контрастний рожевий графіті-принт на білому полотні додає характеру, а вільний oversize крій дарує максимум комфорту та свободи рухів. Для тих, хто любить виділятися без зайвих зусиль.",
     available: true,
+    badge: "новинка",
+    featured: true,
   },
 ];

@@ -5,6 +5,7 @@ import { AnnouncementBar } from "@/components/site/announcement-bar";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { CartProvider } from "@/components/cart/cart-context";
+import { CartDrawer } from "@/components/cart/cart-drawer";
 
 // Дисплей/логотип — готический blackletter (только латиница).
 const display = Pirata_One({
@@ -57,6 +58,7 @@ export default function RootLayout({
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />
+          <CartDrawer />
         </CartProvider>
       </body>
     </html>

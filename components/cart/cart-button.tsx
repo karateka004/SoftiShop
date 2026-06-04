@@ -3,12 +3,13 @@
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/components/cart/cart-context";
 
-// Иконка корзины со счётчиком. Открытие drawer-дровера — Фаза 5.
+// Иконка корзины со счётчиком — открывает дровер корзины.
 export function CartButton() {
-  const { count } = useCart();
+  const { count, openCart } = useCart();
   return (
     <button
       type="button"
+      onClick={openCart}
       aria-label={`Кошик: ${count} товар(ів)`}
       className="relative grid size-10 place-items-center text-ink transition-colors hover:text-pink"
     >

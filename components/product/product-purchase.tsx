@@ -7,13 +7,14 @@ import { SITE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 export function ProductPurchase({ product }: { product: Product }) {
-  const { addItem } = useCart();
+  const { addItem, openCart } = useCart();
   const [size, setSize] = useState(product.sizes[0] ?? "");
   const [added, setAdded] = useState(false);
 
   function handleAdd() {
     if (!size) return;
     addItem(product, size);
+    openCart();
     setAdded(true);
     window.setTimeout(() => setAdded(false), 1800);
   }

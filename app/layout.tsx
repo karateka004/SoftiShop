@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { CartProvider } from "@/components/cart/cart-context";
 import { CartDrawer } from "@/components/cart/cart-drawer";
+import { SITE_URL } from "@/lib/site";
 
 // Дисплей/логотип — готический blackletter (только латиница).
 const display = Pirata_One({
@@ -28,8 +29,6 @@ const sans = Golos_Text({
   variable: "--ff-sans",
   display: "swap",
 });
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

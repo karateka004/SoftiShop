@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { getAllProductHandles } from "@/lib/commerce";
 import { SITE_URL } from "@/lib/site";
 
+export const revalidate = 60;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = ["", "/products", "/lookbook", "/about", "/faq"];
   const handles = await getAllProductHandles();

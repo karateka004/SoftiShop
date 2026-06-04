@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "@/lib/commerce";
 
+// ISR: пересборка из Sanity не реже раза в минуту.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Lookbook",
   description:

@@ -6,6 +6,10 @@ import { formatPrice } from "@/lib/format";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { ProductPurchase } from "@/components/product/product-purchase";
 
+// ISR: страница товара пересобирается из Sanity не реже раза в минуту.
+// dynamicParams=true (по умолчанию) → новые товары из Sanity рендерятся на лету.
+export const revalidate = 60;
+
 export async function generateStaticParams() {
   const handles = await getAllProductHandles();
   return handles.map((handle) => ({ handle }));

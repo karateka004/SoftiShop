@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { getProducts } from "@/lib/commerce";
 import { ProductCard } from "@/components/product/product-card";
 
+// ISR: страница пересобирается из Sanity не реже раза в минуту.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Товари",
   description: "Колекція Softi — кастомні oversize-футболки. Кожна річ унікальна.",

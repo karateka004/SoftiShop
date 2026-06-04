@@ -29,7 +29,10 @@ const sans = Golos_Text({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Softi — кастомні oversize-футболки",
     template: "%s · Softi",
@@ -37,10 +40,17 @@ export const metadata: Metadata = {
   description:
     "Softi — кастомні oversize-футболки: washed black, vintage, арт-принти. Кожна річ унікальна. Замовлення в Direct.",
   openGraph: {
-    title: "Softi",
+    title: "Softi — кастомні oversize-футболки",
     description: "Кастомні oversize-футболки. Кожна річ унікальна.",
     type: "website",
     locale: "uk_UA",
+    siteName: "Softi",
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Softi — кастомні oversize-футболки",
+    description: "Кастомні oversize-футболки. Кожна річ унікальна.",
   },
 };
 
@@ -54,9 +64,17 @@ export default function RootLayout({
     >
       <body className="flex min-h-dvh flex-col">
         <CartProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-ink focus:px-4 focus:py-2 focus:font-head focus:text-sm focus:uppercase focus:tracking-wide focus:text-bone"
+          >
+            До основного вмісту
+          </a>
           <AnnouncementBar />
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main id="main" className="flex-1">
+            {children}
+          </main>
           <SiteFooter />
           <CartDrawer />
         </CartProvider>

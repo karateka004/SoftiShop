@@ -31,8 +31,8 @@ export default async function ProductsPage() {
       </header>
 
       <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4">
-        {ordered.map((p) => (
-          <ProductCard key={p.id} product={p} />
+        {ordered.map((p, i) => (
+          <ProductCard key={p.id} product={p} priority={i < 4} />
         ))}
       </div>
     </section>

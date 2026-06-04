@@ -3,7 +3,13 @@ import Link from "next/link";
 import type { Product } from "@/lib/products";
 import { formatPrice } from "@/lib/format";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  priority = false,
+}: {
+  product: Product;
+  priority?: boolean;
+}) {
   const cover = product.images[0];
   const soldOut = !product.available;
 
@@ -15,6 +21,7 @@ export function ProductCard({ product }: { product: Product }) {
             src={cover.src}
             alt={cover.alt}
             fill
+            priority={priority}
             sizes="(min-width:1024px) 25vw, (min-width:640px) 33vw, 50vw"
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
           />

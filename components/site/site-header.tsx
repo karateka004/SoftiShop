@@ -18,7 +18,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group relative font-head text-sm uppercase tracking-[0.14em] text-ink"
+                className="group relative whitespace-nowrap font-head text-sm uppercase tracking-[0.14em] text-ink"
               >
                 {item.label}
                 <span

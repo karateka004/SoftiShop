@@ -1,6 +1,25 @@
 # progress.md — живой лог
 
-## Сейчас: Фаза 6 завершена ✅ · дальше Фаза 7
+## Сейчас: Фаза 7 завершена ✅ · сайт задеплоен 🚀 · демо готово
+
+### Деплой
+- **Live:** https://softishopdemobild.vercel.app
+- GitHub: `karateka004/SoftiShop` (ветка `main`), Vercel авто-деплоит при `git push`.
+- `SITE_URL` (lib/site.ts) сам берёт `VERCEL_PROJECT_PRODUCTION_URL` → OG/sitemap с правильным доменом.
+
+### Сделано в Фазе 7
+- SEO: `metadataBase`, Twitter-карточка, `app/opengraph-image.tsx` (next/og, латиниця),
+  `app/sitemap.ts` (10 URL), `app/robots.ts`.
+- Перформанс: `priority` на LCP-фото (галерея + первый ряд `/products`, lookbook).
+- a11y: skip-link «До основного вмісту», `id="main"`, фокус-стейты.
+- Брендовая укр. 404 (`app/not-found.tsx`).
+- Адаптив: навигация `whitespace-nowrap` (5 пунктов в строку).
+- 🛠️ Фикс: круговая печать на главной рисовалась полукругом в Safari/iOS — `textLength`
+  не применяется к `textPath`. Решение: фраза ×2 + `letter-spacing`, без `textLength`.
+
+### Дальше (по желанию)
+- Реальные данные товара №2 (Art Print) — цена/размер плейсхолдер.
+- Кастомный домен на Vercel, OG-картинка с фирменным шрифтом (сейчас латиница/дефолт).
 
 ### Сделано в Фазе 6
 - Страницы (статические, укр., метаданные): `/faq`, `/about`, `/lookbook`.
@@ -14,10 +33,6 @@
   reduced-motion); hero появляется со сдвигом (`.rise-in`, под reduced-motion выключено).
 - ⚠️ Turbopack кэширует CSS в `.next` — при правках globals.css, если не подхватывается,
   удалить `.next` и перезапустить dev.
-
-### Дальше (Фаза 7)
-- Адаптив-полировка, SEO (метаданные/OG по страницам), перформанс (LCP-картинки —
-  `priority`), a11y, брендовая укр. 404, деплой на Vercel → публичный URL.
 
 ### Сделано в Фазе 5
 - `CartProvider` расширен состоянием открытия: `isOpen / setOpen / openCart / closeCart`.

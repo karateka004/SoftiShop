@@ -4,7 +4,10 @@ import { SITE } from "@/lib/site";
 // Вращающаяся печать-логотип: круговая надпись бренда крутится 360°
 // вокруг статичного готического «Softi». Уважает prefers-reduced-motion.
 function SpinningSeal() {
-  const ring = "КОЖНА РІЧ УНІКАЛЬНА • 1 OF 1 • STREETWEAR • ";
+  // Фраза повторяется дважды и заполняет круг естественной длиной + лёгким
+  // letter-spacing. НЕ используем textLength: Safari/iOS не применяет его к
+  // textPath (текст оставался полукругом).
+  const ring = "КОЖНА РІЧ УНІКАЛЬНА • 1 OF 1 • STREETWEAR • ".repeat(2);
   return (
     <div className="relative grid size-60 place-items-center md:size-72">
       <svg
@@ -19,12 +22,7 @@ function SpinningSeal() {
             fill="none"
           />
         </defs>
-        <text
-          className="fill-ink font-head"
-          fontSize="12.5"
-          textLength="488"
-          lengthAdjust="spacing"
-        >
+        <text className="fill-ink font-head" fontSize="12.5" letterSpacing="0.45">
           <textPath href="#softi-seal" startOffset="0">
             {ring}
           </textPath>

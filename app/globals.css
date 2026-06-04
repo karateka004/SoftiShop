@@ -122,12 +122,30 @@
     transform: rotate(360deg);
   }
 }
+/* Печать-логотип крутится всегда — это фирменный элемент бренда (по запросу
+   владельца), поэтому намеренно НЕ выключается в prefers-reduced-motion. */
 .seal-spin {
-  animation: softi-spin 22s linear infinite;
+  animation: softi-spin 18s linear infinite;
   transform-origin: center;
 }
+
+/* Плавное появление контента hero при загрузке */
+@keyframes softi-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise-in {
+  animation: softi-rise 0.7s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .seal-spin {
+  .rise-in {
     animation: none;
   }
 }

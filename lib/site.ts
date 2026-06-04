@@ -10,10 +10,12 @@ export const SITE = {
 
 export type NavItem = { href: string; label: string };
 
-// Навигация (роуты /products и /faq появятся в Фазах 3 и 6).
+// Навигация.
 export const NAV: readonly NavItem[] = [
   { href: "/", label: "Головна" },
   { href: "/products", label: "Товари" },
+  { href: "/lookbook", label: "Lookbook" },
+  { href: "/about", label: "Про нас" },
   { href: "/faq", label: "FAQ" },
 ] as const;
 

@@ -3,9 +3,9 @@ import { NAV, SITE, type NavItem } from "@/lib/site";
 import { InstagramIcon } from "@/components/site/icons";
 
 const INFO: readonly NavItem[] = [
-  { href: "/faq", label: "Доставка і оплата" },
-  { href: "/faq", label: "Повернення" },
-  { href: "/faq", label: "Розмірна сітка" },
+  { href: "/faq#dostavka", label: "Доставка і оплата" },
+  { href: "/faq#povernennia", label: "Повернення" },
+  { href: "/faq#rozmiry", label: "Розмірна сітка" },
 ];
 
 function FooterCol({

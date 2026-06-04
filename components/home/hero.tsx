@@ -41,21 +41,27 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-line bg-bone">
       <div className="relative mx-auto flex max-w-[1400px] flex-col items-center px-4 py-20 text-center md:px-6 md:py-28">
-        <p className="font-head text-xs uppercase tracking-[0.3em] text-ink-soft">
+        <p className="rise-in font-head text-xs uppercase tracking-[0.3em] text-ink-soft">
           UA · Streetwear · 1 of 1
         </p>
         {/* h1 для SEO/скрин-ридеров (визуальный акцент — печать) */}
         <h1 className="sr-only">Softi — кастомні oversize-футболки</h1>
 
-        <div className="my-10 md:my-12">
+        <div className="rise-in my-10 md:my-12" style={{ animationDelay: "0.1s" }}>
           <SpinningSeal />
         </div>
 
-        <p className="mx-auto max-w-xl font-sans text-base text-ink-soft md:text-lg">
+        <p
+          className="rise-in mx-auto max-w-xl font-sans text-base text-ink-soft md:text-lg"
+          style={{ animationDelay: "0.2s" }}
+        >
           {SITE.tagline}. Кастомні футболки ручної роботи — vintage-ефект,
           акцентні принти й характер у кожній деталі.
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <div
+          className="rise-in mt-10 flex flex-wrap items-center justify-center gap-3"
+          style={{ animationDelay: "0.3s" }}
+        >
           <Cta href={SITE.instagram} external>
             Замовити в Direct
           </Cta>

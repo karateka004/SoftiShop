@@ -14,7 +14,10 @@ export function ProductCard({
   const soldOut = !product.available;
 
   return (
-    <Link href={`/products/${product.handle}`} className="group block">
+    <Link
+      href={`/products/${product.handle}`}
+      className="group block transition-transform duration-300 ease-out hover:-translate-y-1"
+    >
       <div className="relative aspect-[4/5] overflow-hidden border border-line bg-paper">
         {cover && (
           <Image

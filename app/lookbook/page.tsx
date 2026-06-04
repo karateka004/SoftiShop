@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "@/lib/commerce";
+import { Reveal } from "@/components/motion/reveal";
 
 // ISR: пересборка из Sanity не реже раза в минуту.
 export const revalidate = 60;
@@ -55,25 +56,26 @@ export default async function LookbookPage() {
 
       <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:grid-cols-3">
         {shots.map((shot, i) => (
-          <Link
-            key={shot.key}
-            href={`/products/${shot.handle}`}
-            className="group relative aspect-[4/5] overflow-hidden bg-bone"
-          >
-            <Image
-              src={shot.src}
-              alt={shot.alt}
-              fill
-              sizes="(min-width:768px) 33vw, 50vw"
-              priority={i < 2}
-              className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-            />
-            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/55 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <span className="font-head text-sm uppercase tracking-wide text-bone">
-                {shot.title}
-              </span>
-            </div>
-          </Link>
+          <Reveal key={shot.key} delay={(i % 3) * 0.05} y={18}>
+            <Link
+              href={`/products/${shot.handle}`}
+              className="group relative block aspect-[4/5] overflow-hidden bg-bone"
+            >
+              <Image
+                src={shot.src}
+                alt={shot.alt}
+                fill
+                sizes="(min-width:768px) 33vw, 50vw"
+                priority={i < 2}
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+              />
+              <div className="absolute inset-0 flex items-end bg-gradient-to-t from-ink/55 via-transparent to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <span className="font-head text-sm uppercase tracking-wide text-bone">
+                  {shot.title}
+                </span>
+              </div>
+            </Link>
+          </Reveal>
         ))}
       </div>
 
